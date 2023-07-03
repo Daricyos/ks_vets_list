@@ -34,22 +34,17 @@ class KeyHisausapps(models.Model):
         if self.ruling_all_sort_direction:
             params['sortDirection'] = self.ruling_all_sort_direction
         res = api.get_ruling_all(params=params)
-        print(res[1])
-        print(type(res[1]['X-Pagination']))
         total_pages = eval(res[1]['X-Pagination'])['totalPages']
-        print(total_pages)
         if total_pages:
-            page = 1
+            page = 0
             while page <= total_pages:
                 params['page'] = page
-                print(f'past, {page}')
                 res = api.get_ruling_all(params=params)
                 page += 1
                 try:
                     self.load_rulings(res[0], api)
                 except Exception as e:
                     _logger.info(e)
-
 
     def load_rulings(self, data, api):
         ruling_m = self.env['ks.hisa.vets']
@@ -81,8 +76,6 @@ class KeyHisausapps(models.Model):
                 'is_reg_vet_clear_required': item['isRegVetClearRequired'] if item['isRegVetClearRequired'] is not None else None,
                 'notes': item['notes'] if item['notes'] is not None else None,
             }
-            print(ruling_m)
-            print(item['vetsListId'])
             rul_id = ruling_m.search([('vets_list_id', '=', item['vetsListId'])])
             if rul_id:
                 ruling_m.write(data_to_create)
@@ -91,7 +84,6 @@ class KeyHisausapps(models.Model):
 
     def get_vets_extensions(self, data):
         extensions_ids = []
-        print(data)
         for item in data:
             extensions_create = {
                 'extension_on': item['extensionOn'] if item['extensionOn'] is not None else None,
