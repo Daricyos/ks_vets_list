@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="hisausapps_ruling_tree" model="ir.ui.view">
+        <field name="name">ks.hisa.vets (Hisausapps)</field>
+        <field name="model">ks.hisa.vets</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="vets_list_id"/>
+                <field name="hisa_horse_id"/>
+                <field name="location_id" optional="show"/>
+                <field name="regulatory_vet_id" optional="show"/>
+                <field name="required_diagnostic" optional="show"/>
+                <field name="required_diagnostic_complete_date" optional="hide"/>
+                <field name="reason" optional="hide"/>
+                <field name="days_on_list" optional="hide"/>
+                <field name="date_placed_on_list" optional="hide"/>
+                <field name="jog_past_date" optional="hide"/>
+                <field name="workout_past_date" optional="hide"/>
+                <field name="current_responsible_person_id" optional="hide"/>
+                <field name="current_designated_owner" optional="hide"/>
+                <field name="current_attending_vet" optional="hide"/>
+                <field name="is_enforced" optional="hide"/>
+                <field name="tjc_id" optional="hide"/>
+                <field name="release_date" optional="hide"/>
+                <field name="eligible_to_work" optional="hide"/>
+                <field name="other_state_reason" optional="hide"/>
+                <field name="source_horse_medical_id" optional="hide"/>
+                <field name="source_hisa_injury_id" optional="hide"/>
+                <field name="is_reg_vet_clear_required" optional="hide"/>
+                <field name="notes" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+    <record id="hisausapps_ruling_form" model="ir.ui.view">
+        <field name="name">ks.hisa.vets (Hisausapps)</field>
+        <field name="model">ks.hisa.vets</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="vets_list_id"/>
+                            <field name="hisa_horse_id"/>
+                            <field name="location_id"/>
+                            <field name="regulatory_vet_id"/>
+                            <field name="required_diagnostic"/>
+                            <field name="required_diagnostic_complete_date"/>
+                            <field name="reason"/>
+                            <field name="days_on_list"/>
+                            <field name="date_placed_on_list"/>
+                            <field name="date_to_come_off_list"/>
+                            <field name="jog_past_date"/>
+                            <field name="workout_past_date"/>
+                            <field name="extensions_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="current_responsible_person_id"/>
+                            <field name="current_designated_owner"/>
+                            <field name="current_attending_vet"/>
+                            <field name="is_enforced"/>
+                            <field name="tjc_id"/>
+                            <field name="release_date"/>
+                            <field name="eligible_to_work"/>
+                            <field name="other_state_reason"/>
+                            <field name="source_horse_medical_id"/>
+                            <field name="source_hisa_injury_id"/>
+                            <field name="is_reg_vet_clear_required"/>
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hisausapps_ruling_action_window"
+            model="ir.actions.act_window">
+        <field name="name">Vets List</field>
+        <field name="res_model">ks.hisa.vets</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="hisausapps_rulings_main_menu"
+              parent="hisausapps_menu_main"
+              action="hisausapps_ruling_action_window"
+              name="Vets List" sequence="200"/>
+</odoo>
