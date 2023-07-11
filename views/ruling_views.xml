@@ -5,9 +5,11 @@
         <field name="model">ks.hisa.vets</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="vets_list_id"/>
-                <field name="hisa_horse_id"/>
+                <field name="vets_list_id" optional="show"/>
+                <field name="hisa_horse_id" optional="show"/>
                 <field name="location_id" optional="show"/>
+                <field name="hisa_horse_full_name" optional="show"/>
+                <field name="location_full_name" optional="show"/>
                 <field name="regulatory_vet_id" optional="show"/>
                 <field name="required_diagnostic" optional="show"/>
                 <field name="required_diagnostic_complete_date" optional="hide"/>
@@ -39,33 +41,33 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="vets_list_id"/>
-                            <field name="hisa_horse_id"/>
-                            <field name="location_id"/>
-                            <field name="regulatory_vet_id"/>
-                            <field name="required_diagnostic"/>
-                            <field name="required_diagnostic_complete_date"/>
-                            <field name="reason"/>
-                            <field name="days_on_list"/>
-                            <field name="date_placed_on_list"/>
-                            <field name="date_to_come_off_list"/>
-                            <field name="jog_past_date"/>
-                            <field name="workout_past_date"/>
-                            <field name="extensions_ids" widget="many2many_tags"/>
+                            <field name="vets_list_id" readonly="1"/>
+                            <field name="hisa_horse_full_name" readonly="1"/>
+                            <field name="location_full_name" readonly="1"/>
+                            <field name="regulatory_vet_id" readonly="1"/>
+                            <field name="required_diagnostic" readonly="1"/>
+                            <field name="required_diagnostic_complete_date" readonly="1"/>
+                            <field name="reason" readonly="1"/>
+                            <field name="days_on_list" readonly="1"/>
+                            <field name="date_placed_on_list" readonly="1"/>
+                            <field name="date_to_come_off_list" readonly="1"/>
+                            <field name="jog_past_date" readonly="1"/>
+                            <field name="workout_past_date" readonly="1"/>
+                            <field name="extensions_ids" widget="many2many_tags" readonly="1"/>
                         </group>
                         <group>
-                            <field name="current_responsible_person_id"/>
-                            <field name="current_designated_owner"/>
-                            <field name="current_attending_vet"/>
-                            <field name="is_enforced"/>
-                            <field name="tjc_id"/>
-                            <field name="release_date"/>
-                            <field name="eligible_to_work"/>
-                            <field name="other_state_reason"/>
-                            <field name="source_horse_medical_id"/>
-                            <field name="source_hisa_injury_id"/>
-                            <field name="is_reg_vet_clear_required"/>
-                            <field name="notes"/>
+                            <field name="current_responsible_person_id" readonly="1"/>
+                            <field name="current_designated_owner" readonly="1"/>
+                            <field name="current_attending_vet" readonly="1"/>
+                            <field name="is_enforced" readonly="1"/>
+                            <field name="tjc_id" readonly="1"/>
+                            <field name="release_date" readonly="1"/>
+                            <field name="eligible_to_work" readonly="1"/>
+                            <field name="other_state_reason" readonly="1"/>
+                            <field name="source_horse_medical_id" readonly="1"/>
+                            <field name="source_hisa_injury_id" readonly="1"/>
+                            <field name="is_reg_vet_clear_required" readonly="1"/>
+                            <field name="notes" readonly="1"/>
                         </group>
                     </group>
                 </sheet>

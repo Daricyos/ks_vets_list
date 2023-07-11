@@ -1,4 +1,6 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+ks_vets_list.access_horse_name,access_horse_name,ks_vets_list.model_horse_name,base.group_user,1,1,1,1
+ks_vets_list.access_location_name,access_location_name,ks_vets_list.model_location_name,base.group_user,1,1,1,1
 ks_vets_list.access_ks_hisa_key,access_ks_hisa_key,ks_vets_list.model_ks_hisa_key,base.group_user,1,1,1,1
 ks_vets_list.access_ks_hisa_vets,access_ks_hisa_vets,ks_vets_list.model_ks_hisa_vets,base.group_user,1,1,1,1
 ks_vets_list.access_ks_vets_list_extensions,access_ks_vets_list_extensions,ks_vets_list.model_ks_vets_list_extensions,base.group_user,1,1,1,1

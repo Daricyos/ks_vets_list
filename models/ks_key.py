@@ -66,6 +66,8 @@ class KeyHisausapps(models.Model):
                 'current_responsible_person_id': item['currentResponsiblePersonId'] if item['currentResponsiblePersonId'] is not None else None,
                 'current_designated_owner': item['currentDesignatedOwner'] if item['currentDesignatedOwner'] is not None else None,
                 'current_attending_vet': item['currentAttendingVet'] if item['currentAttendingVet'] is not None else None,
+                'hisa_horse_name': item['hisaHorseName'] if item['hisaHorseName'] is not None else None,
+                'location_name': item['locationName'] if item['locationName'] is not None else None,
                 'is_enforced': item['isEnforced'] if item['isEnforced'] is not None else None,
                 'tjc_id': item['tjcId'] if item['tjcId'] is not None else None,
                 'release_date': item['releaseDate'] if item['releaseDate'] is not None else None,
@@ -78,9 +80,32 @@ class KeyHisausapps(models.Model):
             }
             rul_id = ruling_m.search([('vets_list_id', '=', item['vetsListId'])])
             if rul_id:
-                ruling_m.write(data_to_create)
+                rul_id.write(data_to_create)
             else:
-                ruling_m.create(data_to_create)
+                rul_id = ruling_m.create(data_to_create)
+            is_horse_true = self.env['horse.name'].search(
+                [('name', '=', data_to_create['hisa_horse_name']), ('id_horse_name', '=', data_to_create['hisa_horse_id'])],
+                limit=1)
+            if not is_horse_true:
+                is_horse_true.create({
+                    'name': data_to_create['hisa_horse_name'],
+                    'id_horse_name': data_to_create['hisa_horse_id'],
+                })
+            horse_name_id = self.env['horse.name'].search([('id_horse_name', '=', rul_id.hisa_horse_id)], limit=1)
+            if horse_name_id:
+                rul_id.hisa_horse_full_name = horse_name_id.id
+
+            is_location_true = self.env['location.name'].search(
+                [('name', '=', data_to_create['location_name']), ('id_location_name', '=', data_to_create['location_id'])],
+                limit=1)
+            if not is_location_true:
+                is_location_true.create({
+                    'name': data_to_create['location_name'],
+                    'id_location_name': data_to_create['location_id'],
+                })
+            location_name_id = self.env['location.name'].search([('id_location_name', '=', rul_id.location_id)], limit=1)
+            if location_name_id:
+                rul_id.location_full_name = location_name_id.id
 
     def get_vets_extensions(self, data):
         extensions_ids = []

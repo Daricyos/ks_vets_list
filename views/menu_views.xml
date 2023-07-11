@@ -1,6 +1,6 @@
 <odoo>
     <menuitem id="hisausapps_menu_main"
-              web_icon="ks_vets_list,static/description/icon.png"
+              web_icon="ks_vets_list/description/icon.png"
               name="Vets List" sequence="200"/>
 
     <menuitem id="hisausapps_settings_main_menu"
